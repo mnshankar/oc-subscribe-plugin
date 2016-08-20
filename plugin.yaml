@@ -1,0 +1,6 @@
+plugin:
+    name: 'serenitynow.subscribe::lang.plugin.name'
+    description: 'serenitynow.subscribe::lang.plugin.description'
+    author: 'Shankar Manamalkav'
+    icon: oc-icon-plug
+    homepage: ''

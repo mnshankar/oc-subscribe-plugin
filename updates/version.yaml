@@ -1,0 +1,5 @@
+1.0.1:
+    - 'Initialize plugin.'
+1.0.2:
+    - 'Created table serenitynow_subscribe_blog_subscriptions'
+    - create_serenitynow_subscribe_blog_subscriptions.php
