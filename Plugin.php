@@ -1,12 +1,19 @@
 <?php namespace SerenityNow\Subscribe;
 
+use Mailchimp;
+use SerenityNow\Subscribe\Models\Settings as MailChimpSettings;
 use System\Classes\PluginBase;
-use SerenityNow\Subscribe\Models\Subscriber;
+//include Mailchimp V2 loaded via composer
+require 'vendor/autoload.php';
 
 class Plugin extends PluginBase
 {
+    public $require = ['RainLab.Blog'];
+
     public function boot()
     {
+        //set_include_path(get_include_path() . PATH_SEPARATOR . __DIR__ . '/vendor/mailchimp/mailchimp/src');
+
         \Event::listen(['eloquent.updating: RainLab\Blog\Models\Post',
             'eloquent.creating: RainLab\Blog\Models\Post'], function ($post) {
             //send email when the post status is changed from unpublished to published
@@ -25,17 +32,24 @@ class Plugin extends PluginBase
 
     private function sendEmail($post)
     {
-        $subscribedEmails = Subscriber::lists('email');
         $params = [
             'blog_title'   => $post->title,
             'blog_content' => $post->content_html,
         ];
-        foreach ($subscribedEmails as $email) {
-            \Mail::queue('serenitynow.subscribe::mail.email', $params, function ($message) use ($email) {
-                $message->subject('New Blog Published!');
-                $message->to($email);
-            });
-        }
+        $settings = MailChimpSettings::instance();
+        $options = [
+            'list_id'    => $settings->list_id,
+            'subject'    => 'New Blog Published',
+            'from_name'  => \Config::get('mail.from.name'),
+            'from_email' => \Config::get('mail.from.address'),
+        ];
+        /*
+         * Mailchimp API V2.0
+         */
+        $mailchimp = new Mailchimp($settings->api_key);
+        $content = \View::make('serenitynow.subscribe::mail.email', $params)->render();
+        $campaign = $mailchimp->campaigns->create('regular', $options, array('html' => $content));
+        $mailchimp->campaigns->send($campaign['id']);
     }
 
     public function registerMailTemplates()
@@ -54,5 +68,15 @@ class Plugin extends PluginBase
 
     public function registerSettings()
     {
+        return [
+            'settings' => [
+                'category'    => 'Blog',
+                'label'       => 'MailChimp Subscription',
+                'icon'        => 'icon-envelope',
+                'description' => 'On Blog Publish, Send Email to All Subscribers',
+                'class'       => 'SerenityNow\Subscribe\Models\Settings',
+                'order'       => 500
+            ]
+        ];
     }
 }

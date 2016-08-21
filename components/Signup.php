@@ -2,7 +2,12 @@
 
 use Cms\Classes\ComponentBase;
 use October\Rain\Exception\ValidationException;
-use SerenityNow\Subscribe\Models\Subscriber;
+use Mailchimp;
+use Mailchimp_Lists;
+use SerenityNow\Subscribe\Models\Settings as MailChimpSettings;
+
+//include Mailchimp V2 loaded via composer
+require 'vendor/autoload.php';
 
 class Signup extends ComponentBase
 {
@@ -23,38 +28,41 @@ class Signup extends ComponentBase
     //ajax method called on subscribe
     public function onSignup()
     {
+        $settings = MailChimpSettings::instance();
+        if (!$settings->api_key) {
+            throw new ApplicationException('MailChimp API key is not configured.');
+        }
+        /*
+         * Validate input
+         */
         $data = post();
         $rules = [
-            'email' => 'required|email'
+            'email' => 'required|email|min:2|max:64',
         ];
         $validation = \Validator::make($data, $rules);
         if ($validation->fails()) {
             throw new ValidationException($validation);
         }
-        Subscriber::create([
-            'email' => $data['email'],
-        ]);
-        return true;
-    }
-
-    //ajax method called on unsubscribe
-    public function onCancel()
-    {
-        $data = post();
-        $rules = [
-            'email' => 'required|email'
-        ];
-        $validation = \Validator::make($data, $rules);
-        if ($validation->fails()) {
-            throw new ValidationException($validation);
+        /*
+         * Sign up to a list using Mailchimp API
+         */
+        $api = new Mailchimp($settings->api_key);
+        $lists = new Mailchimp_Lists($api);
+        $this->page['error'] = null;
+        $mergeVars = '';
+        if (isset($data['merge']) && is_array($data['merge']) && count($data['merge'])) {
+            $mergeVars = $data['merge'];
         }
-        if (!Subscriber::where('email', $data['email'])->first()) {
-            throw new \Exception('Sorry. Email not found.');
+        try {
+            $lists->subscribe($settings->list_id,
+                array('email'=>post('email')),
+                $mergeVars,
+                'html',
+                true,  //double_optin.. avoids spam emails from being subscribed
+                false,  //update_existing
+                false); //replace_interests
+        } catch (\Mailchimp_Error $e) {
+            $this->page['error'] = $e->getMessage();
         }
-        Subscriber::where([
-            'email' => $data['email'],
-        ])->delete();
-
-        return true;
     }
 }

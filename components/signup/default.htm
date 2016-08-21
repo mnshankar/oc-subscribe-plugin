@@ -7,14 +7,8 @@
         <button type="button" class="btn bt-xs btn-success"
                 title="Subscribe!"
                 data-request="{{__SELF__}}::onSignup"
-                data-request-success="alert('Thank you for signing up!'); document.getElementById('signup').reset();"
+                data-request-success="alert('Thank you! Please confirm your subscription by clicking on the confirmation link in your email.'); document.getElementById('signup').reset();"
         ><i class="icon-thumbs-up"></i></button>
-        <button type="button" class="btn bt-xs btn-danger"
-                title="Un-Subscribe"
-                data-request="{{__SELF__}}::onCancel"
-                data-request-confirm="Are you sure you wish to Unsubscribe?"
-                data-request-success="alert('Sorry to see you go! You have been unsubscribed.'); document.getElementById('signup').reset();"
-        ><i class="icon-minus"></i></button>
     </div>
 </form>
 

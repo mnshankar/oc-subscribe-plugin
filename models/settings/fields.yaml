@@ -1,0 +1,10 @@
+fields:
+
+  api_key:
+    label: MailChimp API key
+    span: left
+    commentAbove: Get an API Key from http://admin.mailchimp.com/account/api/
+  list_id:
+    label: MailChimp List Id
+    span: left
+    commentAbove: List ID from MailChimp. Email will be sent to all subscribers in this list on Blog Publish

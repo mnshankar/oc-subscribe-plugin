@@ -1,0 +1,16 @@
+{
+	"name": "serenitynow/subscribe",
+    "type": "october-plugin",
+    "description": "OctoberCMS plugin that emails published blogs to subscribers using MailChimp",
+    "keywords": ["october", "cms", "mailchimp"],
+    "authors": [
+        {
+            "name": "Shankar Manamalkav",
+            "email": "mnshankar@gmail.com"
+        }        
+    ],
+    "require": {
+    	"php": ">=5.2.0",
+        "mailchimp/mailchimp": "^2.0"
+    }
+}
