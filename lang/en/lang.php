@@ -1,6 +1,6 @@
 <?php return [
     'plugin' => [
         'name' => 'Subscribe',
-        'description' => 'Get notified when a new Blog is published',
+        'description' => 'Notify subscribers via MailChimp when a new Blog is published',
     ],
 ];
