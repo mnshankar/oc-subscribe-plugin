@@ -1,5 +1,5 @@
 {
-	"name": "serenitynow/subscribe",
+    "name": "serenitynow/subscribe",
     "type": "october-plugin",
     "description": "OctoberCMS plugin that emails published blogs to subscribers using MailChimp",
     "keywords": ["october", "cms", "mailchimp"],
