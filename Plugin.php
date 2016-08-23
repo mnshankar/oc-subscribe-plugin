@@ -45,10 +45,16 @@ class Plugin extends PluginBase
         /*
          * Mailchimp API V2.0
          */
-        $mailchimp = new Mailchimp($settings->api_key);
-        $content = \View::make('serenitynow.subscribe::mail.email', $params)->render();
-        $campaign = $mailchimp->campaigns->create('regular', $options, array('html' => $content));
-        $mailchimp->campaigns->send($campaign['id']);
+        try{ 
+            $mailchimp = new Mailchimp($settings->api_key);
+            $content = \View::make('serenitynow.subscribe::mail.email', $params)->render();
+            $campaign = $mailchimp->campaigns->create('regular', $options, array('html' => $content));
+            $mailchimp->campaigns->send($campaign['id']);
+        }
+        catch (\MailChimp_Error $e)
+        {
+            throw new \Exception('MailChimp returned the following error: '.$e->getMessage());
+        }
     }
 
     public function registerMailTemplates()
