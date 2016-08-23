@@ -4,3 +4,5 @@
     - 'Fix include path for vendor (composer dependency)'
     - 'Remove icons on component'
     - 'Bugfix'
+1.0.3:
+    - 'Change to uppercase Settings - Bugfix'    

@@ -5,7 +5,7 @@ use October\Rain\Exception\ValidationException;
 use October\Rain\Exception\ApplicationException;
 use Mailchimp;
 use Mailchimp_Lists;
-use SerenityNow\Subscribe\Models\settings as MailChimpSettings;
+use SerenityNow\Subscribe\Models\Settings as MailChimpSettings;
 
 class Signup extends ComponentBase
 {
