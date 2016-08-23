@@ -6,3 +6,5 @@
     - 'Bugfix'
 1.0.3:
     - 'Change to uppercase Settings - Bugfix'    
+1.0.4:
+    - 'Add try-catch for MailChimp Errors in Plugin.php'
