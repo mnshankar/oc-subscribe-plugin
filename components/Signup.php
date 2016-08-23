@@ -2,15 +2,18 @@
 
 use Cms\Classes\ComponentBase;
 use October\Rain\Exception\ValidationException;
+use October\Rain\Exception\ApplicationException;
 use Mailchimp;
 use Mailchimp_Lists;
-use SerenityNow\Subscribe\Models\Settings as MailChimpSettings;
-
-//include Mailchimp V2 loaded via composer
-require 'vendor/autoload.php';
+use SerenityNow\Subscribe\Models\settings as MailChimpSettings;
 
 class Signup extends ComponentBase
 {
+    public function init()
+    {
+         //include Mailchimp V2 loaded via composer
+        set_include_path(get_include_path() . PATH_SEPARATOR . __DIR__ . '/vendor/mailchimp/mailchimp/src');
+    }
 
     public function componentDetails()
     {

@@ -4,7 +4,7 @@ think storing a set of emails, looping over each one of them and sending out ema
 But this solution only works for a very small subscriber base(5-10 max). 
 Any more, and you could be invoking the wrath of the email Gods - your emails could be classified as spam 
 or worse, your domain could potentially be flagged as a spammer!
-(Tag v1.0 of this project uses the naive approach.. Feel free to take a look if you are interested).
+(Tag v1.0 of [this project](https://github.com/mnshankar/oc-subscribe-plugin) uses the naive approach.. Feel free to take a look if you are interested).
 
 The solution is to use the services of a third-party provider like [MailChimp](http://mailchimp.com/) 
 that specializes in safe email transmission, and handles all the myriad requirements of bulk mailing.
@@ -37,3 +37,6 @@ when a blog gets published (via Mailchimp Campaigns - Each blog publish event re
 6. After logging into Mailchimp, create a list for holding subscriber emails.
 5. On your backend -> Settings, under the "Blog" category, an option for "Mailchimp Subscription" becomes available. Please enter 
 your Mailchimp API key and List ID in the spaces provided.
+
+##NOTE:
+if you want to use the component on a partial, drag the component onto your layout and move the code {% component 'Signup' %} onto the partial. This way, the ajax framework will be able to find the required handlers.

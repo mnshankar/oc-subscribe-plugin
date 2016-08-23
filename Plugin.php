@@ -3,8 +3,6 @@
 use Mailchimp;
 use SerenityNow\Subscribe\Models\Settings as MailChimpSettings;
 use System\Classes\PluginBase;
-//include Mailchimp V2 loaded via composer
-require 'vendor/autoload.php';
 
 class Plugin extends PluginBase
 {
@@ -12,7 +10,8 @@ class Plugin extends PluginBase
 
     public function boot()
     {
-        //set_include_path(get_include_path() . PATH_SEPARATOR . __DIR__ . '/vendor/mailchimp/mailchimp/src');
+        //include Mailchimp V2 loaded via composer
+        set_include_path(get_include_path() . PATH_SEPARATOR . __DIR__ . '/vendor/mailchimp/mailchimp/src');
 
         \Event::listen(['eloquent.updating: RainLab\Blog\Models\Post',
             'eloquent.creating: RainLab\Blog\Models\Post'], function ($post) {

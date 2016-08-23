@@ -1,14 +1,11 @@
 <form method="post" class="form-inline" id="signup">
-    <div class="form-group">
-        <div class="input-group">
-            <span class="input-group-addon"><i class="icon-envelope"></i></span>
-            <input type="email" class="form-control" name="email" placeholder="you@email.com">
-        </div>
-        <button type="button" class="btn bt-xs btn-success"
+    <div class="form-group">                
+        <input type="email" class="form-control" name="email" placeholder="you@email.com">    
+        <button type="button" class="btn btn-success"
                 title="Subscribe!"
                 data-request="{{__SELF__}}::onSignup"
                 data-request-success="alert('Thank you! Please confirm your subscription by clicking on the confirmation link in your email.'); document.getElementById('signup').reset();"
-        ><i class="icon-thumbs-up"></i></button>
+        >Subscribe</button>
     </div>
-</form>
+</form> 
 

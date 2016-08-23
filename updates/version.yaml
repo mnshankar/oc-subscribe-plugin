@@ -1,2 +1,6 @@
 1.0.1:
     - 'Initialize plugin.'
+1.0.2:
+    - 'Fix include path for vendor (composer dependency)'
+    - 'Remove icons on component'
+    - 'Bugfix'
