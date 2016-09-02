@@ -8,3 +8,5 @@
     - 'Change to uppercase Settings - Bugfix'    
 1.0.4:
     - 'Add try-catch for MailChimp Errors in Plugin.php'
+1.0.5:
+    - 'Use MailSettings for getting email and name (instead of config)'

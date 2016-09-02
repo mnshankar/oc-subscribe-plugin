@@ -39,8 +39,8 @@ class Plugin extends PluginBase
         $options = [
             'list_id'    => $settings->list_id,
             'subject'    => 'New Blog Published',
-            'from_name'  => \Config::get('mail.from.name'),
-            'from_email' => \Config::get('mail.from.address'),
+            'from_name'  => \System\Models\MailSettings::get('sender_name'),
+            'from_email' => \System\Models\MailSettings::get('sender_email'),
         ];
         /*
          * Mailchimp API V2.0

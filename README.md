@@ -30,12 +30,13 @@ when a blog gets published (via Mailchimp Campaigns - Each blog publish event re
 1. Go to __Settings > "Updates & Plugins"__ page in the Backend.
 2. Click on the __"Install plugins"__ option.
 3. Type __Subscribe__ text in the search field, and pick the appropriate plugin.
-4. To add the component on your front-end page/layout :
+4. Make sure you enter your sender name and sender email under Settings->Mail Configuration
+5. To add the component on your front-end page/layout :
 ```
 {% component 'Signup' %}
 ```
 6. After logging into Mailchimp, create a list for holding subscriber emails.
-5. On your backend -> Settings, under the "Blog" category, an option for "Mailchimp Subscription" becomes available. Please enter 
+7. On your backend -> Settings, under the "Blog" category, an option for "Mailchimp Subscription" becomes available. Please enter 
 your Mailchimp API key and List ID in the spaces provided.
 
 ##NOTE:
