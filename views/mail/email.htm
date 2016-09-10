@@ -1,8 +1,11 @@
+subject="New Blog Published"
+==
+
 <p>Dear Subscriber,</p>
 <p>You might be interested to read my new blog publication:</p>
 <br>
-<p><em>{{ blog_title }}</em><br>
-    {{ blog_content|raw }}</p>
+<p><em>{{ post.title }}</em><br>
+    {{ post.content|raw }}</p>
 <hr/>
 <p><a href="{{ url('/') }}">Visit My Site</a></p>
 <br>

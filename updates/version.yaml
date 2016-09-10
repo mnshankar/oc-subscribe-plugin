@@ -10,3 +10,7 @@
     - 'Add try-catch for MailChimp Errors in Plugin.php'
 1.0.5:
     - 'Use MailSettings for getting email and name (instead of config)'
+1.0.6:
+    - 'Fix October system class name change to MailSetting'
+    - 'Use backend mail template for increased customization'
+    - 'Make ALL post data available to the email template (user_id, title, slug, excerpt, content, content_html, published_at, published, created_at, updated_at)'
